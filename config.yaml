@@ -1,0 +1,10 @@
+organizations:
+  - from: opengauss
+    to: opengauss
+    route: gitcode-to-gitee
+    repos:
+      - opengauss
+    exclude_repos:
+
+
+gitcode_token: ""
