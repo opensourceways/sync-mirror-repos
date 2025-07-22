@@ -3,7 +3,7 @@ organizations:
     to: opengauss
     route: gitcode-to-gitee
     repos:
-      - opengauss
+      - opengauss/docs
     exclude_repos:
 
 
