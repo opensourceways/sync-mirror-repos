@@ -38,9 +38,11 @@ class SyncMirrorRepos:
         else:
             cmd = [f"./tools/sync.sh", gitcode_url, github_url, origin, repo]
 
-        code = subprocess.call(cmd)
-        if code != 0:
+        try:
+            subprocess.run(cmd, timeout=60*60, check=True)
+        except Exception as err:
             logging.info(f"sync {gitcode_url} fail...")
+            logging.error(err)
             return
 
         # 对镜像仓进行锁仓操作
