@@ -5,6 +5,9 @@ organizations:
     repos:
       - opengauss/docs
     exclude_repos:
+      - opengauss/og-agreements
+      - opengauss/org-issue
 
 
-gitcode_token: ""
+gitcode_token: "****"
+gitee_token: "****"
