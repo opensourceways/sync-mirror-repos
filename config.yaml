@@ -3,11 +3,21 @@ organizations:
     to: opengauss
     route: gitcode-to-gitee
     repos:
-      - opengauss/docs
+      - opengauss
+    exclude_repos:
+      - opengauss/og-agreements
+      - opengauss/org-issue
+
+  - from: opengauss
+    to: opengauss-mirror
+    route: gitcode-to-github
+    repos:
+      - opengauss
     exclude_repos:
       - opengauss/og-agreements
       - opengauss/org-issue
 
 
-gitcode_token: "****"
-gitee_token: "****"
+gitcode_token: ""
+gitee_token: ""
+github_token: "@"

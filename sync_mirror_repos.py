@@ -4,6 +4,7 @@ import subprocess
 
 from src.gitcode_app import GitcodeApp
 from src.gitee_app import GiteeApp
+from src.github_app import GithubApp
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s  %(levelname)s: %(message)s")
 
@@ -16,11 +17,14 @@ class SyncMirrorRepos:
         self.organizations = config.get("organizations")
         self.gitcode_token = config.get("gitcode_token")
         self.gitee_token = config.get("gitee_token")
+        self.github_token = config.get("github_token")
 
         self.gitcode_app = GitcodeApp(access_token=self.gitcode_token)
         self.gitee_app = GiteeApp(access_token=self.gitee_token)
+        self.github_app = GithubApp(access_token=self.github_token)
 
-    def sync_mirror(self, origin: str, dis: str, route: str, repo: str):
+    @staticmethod
+    def sync_mirror(origin: str, dis: str, route: str, repo: str):
         """
         实施镜像
         :param origin: 源仓组织名
@@ -70,7 +74,7 @@ class SyncMirrorRepos:
                 to_repos = self.gitee_app.get_repos(to)
                 to_repos = [x.split("/")[1] for x in to_repos if x.startswith(f"{to}/")]
             else:
-                to_repos = []
+                to_repos = self.github_app.get_repos(to)
 
             for repo in repos:
 
@@ -79,7 +83,8 @@ class SyncMirrorRepos:
                     logging.info(f"repo {to}/{repo} not exist, create it...")
                     self.gitee_app.create_repo(to, repo)
                 elif repo not in to_repos and to_platform == "github":
-                    pass
+                    logging.info(f"repo {to}/{repo} not exist, create it...")
+                    self.gitee_app.create_repo(to, repo)
 
                 # 同步镜像
                 self.sync_mirror(_from, to, route, repo)
