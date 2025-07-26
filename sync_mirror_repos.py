@@ -84,7 +84,7 @@ class SyncMirrorRepos:
                     self.gitee_app.create_repo(to, repo)
                 elif repo not in to_repos and to_platform == "github":
                     logging.info(f"repo {to}/{repo} not exist, create it...")
-                    self.gitee_app.create_repo(to, repo)
+                    self.github_app.create_repo(to, repo)
 
                 # 同步镜像
                 self.sync_mirror(_from, to, route, repo)
