@@ -1,23 +1,20 @@
 organizations:
-  - from: opengauss
-    to: opengauss
-    route: gitcode-to-gitee
+  - from: ascend
+    to: ascend
+    route: gitee-to-gitcode
     repos:
-      - opengauss
-    exclude_repos:
-      - opengauss/og-agreements
-      - opengauss/org-issue
-
-  - from: opengauss
-    to: opengauss-mirror
-    route: gitcode-to-github
-    repos:
-      - opengauss
-    exclude_repos:
-      - opengauss/og-agreements
-      - opengauss/org-issue
+      - ascend/cann-community
+      - ascend/infrastructure
+      - ascend/cann-hccl
+      - ascend/cann-ops-adv
+      - ascend/cann-ops
+      - ascend/triton-ascend
+      - ascend/ascendc-api-adv
+      - ascend/samples
+      - ascend/tensorflow
+      - ascend/metadef
 
 
 gitcode_token: ""
 gitee_token: ""
-github_token: "@"
+
